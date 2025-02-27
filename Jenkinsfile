@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        GRADLE_HOME = tool 'Gradle' // Ensure Gradle is configured in Jenkins
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "${GRADLE_HOME}/bin/gradle clean build"
+                sh "./gradlew clean build"
             }
         }
 
         stage('Test') {
             steps {
-                sh "${GRADLE_HOME}/bin/gradle test"
+                sh "./gradlew test"
             }
         }
     }
