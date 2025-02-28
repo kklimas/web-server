@@ -18,9 +18,15 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Unit Test') {
             steps {
                 sh "./gradlew test"
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                echo 'Building docker image...'
             }
         }
     }
