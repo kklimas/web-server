@@ -9,6 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/kklimas/web-server.git'
+                echo "Git commit: ${env.GIT_COMMIT}"
             }
         }
 
@@ -27,16 +28,8 @@ pipeline {
         stage('Build Image') {
             steps {
                 echo 'Building docker image...'
+                sh "docker --version"
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build and tests passed!'
-        }
-        failure {
-            echo 'Build or tests failed!'
         }
     }
 }
