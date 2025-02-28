@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: '${params.BRANCH}',
-                url 'https://github.com/kklimas/web-server.git'
+                git branch: '${params.BRANCH}', url: 'https://github.com/kklimas/web-server.git'
             }
         }
 
