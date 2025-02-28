@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/kklimas/web-server' // Replace with your repo
+                git 'https://github.com/kklimas/web-server.git' // Replace with your repo
             }
         }
 
