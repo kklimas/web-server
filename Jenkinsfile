@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/kklimas/web-server.git' // Replace with your repo
+                script {
+                    git branch: 'develop'
+                }
             }
         }
 
