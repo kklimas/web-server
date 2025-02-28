@@ -28,7 +28,10 @@ pipeline {
         stage('Build Image') {
             steps {
                 echo 'Building docker image...'
-                sh "docker --version"
+                script {
+                    def image = docker.build("devops/web-server:${env.GIT_COMMIT}")
+
+                }
             }
         }
     }
