@@ -26,6 +26,8 @@ node {
 
     stage('Docker build') {
         echo "Building docker image..."
-        docker.build("devops/web-server:${commit}")
+        script {
+            docker.build("devops/web-server:${commit}")
+        }
     }
 }
