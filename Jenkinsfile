@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Building docker image...'
                 script {
-                    def image = docker.build("devops/web-server:${env.GIT_COMMIT}")
+                    sh "docker build -t devops/web-server:${env.GIT_COMMIT} ."
 
                 }
             }
