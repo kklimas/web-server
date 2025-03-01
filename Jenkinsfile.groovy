@@ -3,12 +3,13 @@ node {
     def branch = params.BRANCH ?: 'develop'
 
     stage('Checkout') {
-        echo "Triggered pipeline for branch ${branch} and commit ${commit}"
-        checkout([
+        def scmVariables = checkout([
                 $class: 'GitSCM',
                 branches: [[name: "*/${branch}"]],
                 userRemoteConfigs: [[url: 'https://github.com/kklimas/web-server.git']]
         ])
+        echo "Triggered pipeline for branch ${branch} and commit ${commit}"
+        env.GIT_COMMIT = scmVariables.GIT_COMMIT
     }
 
     stage('Build') {
