@@ -19,6 +19,12 @@ node {
     stage('Unit Tests') {
         echo "Running tests..."
         sh './gradlew test'
+        echo "Archiving test results..."
+        junit '**/build/test-results/test/*.xml'
+    }
+
+    stage('Docker build') {
+        echo "Building docker image..."
     }
 }
 //
