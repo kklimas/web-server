@@ -8,8 +8,8 @@ node {
                 branches: [[name: "*/${branch}"]],
                 userRemoteConfigs: [[url: 'https://github.com/kklimas/web-server.git']]
         ])
+        commit = scmVariables.GIT_COMMIT
         echo "Triggered pipeline for branch ${branch} and commit ${commit}"
-        env.GIT_COMMIT = scmVariables.GIT_COMMIT
     }
 
     stage('Build') {
