@@ -28,7 +28,7 @@ pipeline {
             stage('Docker build and push') {
                 steps {
                     script {
-                        image = docker.build("devops/web-server")
+                        def image = docker.build("devops/web-server")
                         docker.withRegistry('https://registry.hub.docker.com', 'docker.io') {
                             image.push()
                         }
