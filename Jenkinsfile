@@ -30,7 +30,7 @@ pipeline {
                     script {
                         docker.withRegistry('https://registry.hub.docker.com', 'docker.io') {
                             def image = docker.build("devops/web-server")
-                            image.push()
+//                             image.push()
                         }
                     }
                 }
