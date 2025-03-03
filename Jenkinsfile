@@ -7,25 +7,33 @@ pipeline {
 
     stages {
             stage('Checkout') {
-                git branch: '*/${BRANCH}', url: 'https://github.com/kklimas/web-server.git'
+                steps {
+                    git branch: '${BRANCH}', url: 'https://github.com/kklimas/web-server.git'
+                }
             }
 
             stage('Build') {
-                echo "Building from branch: ${branch}"
-                sh "./gradlew build"
+                steps {
+                    echo "Building from branch: ${BRANCH}"
+                    sh "./gradlew build"
+                }
             }
 
             stage('Unit Tests') {
-                echo "Running tests..."
-                sh './gradlew test'
-                echo "Archiving test results..."
-                junit '**/build/test-results/test/*.xml'
+                steps {
+                    echo "Running tests..."
+                    sh './gradlew test'
+                    echo "Archiving test results..."
+                    junit '**/build/test-results/test/*.xml'
+                }
             }
 
             stage('Docker build') {
-                echo "Building docker image..."
-                script {
-                    docker.build("devops/web-server")
+                steps {
+                    echo "Building docker image..."
+                    script {
+                        docker.build("devops/web-server")
+                    }
                 }
             }
     }
