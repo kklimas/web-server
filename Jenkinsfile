@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        dockerTools 'Default'
+    }
+
     stages {
             stage('Checkout') {
                 def scmVariables = checkout([
