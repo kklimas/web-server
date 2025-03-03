@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        dockerTool 'Default'
+    }
+
     stages {
             stage('Checkout') {
                 steps {
