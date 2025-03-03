@@ -29,7 +29,7 @@ pipeline {
                 steps {
                     script {
                         image = docker.build("devops/web-server")
-                        docker.withRegistry('', 'git') {
+                        docker.withRegistry('registry.hub.docker.com', 'docker.io') {
                             image.push()
                         }
                     }
