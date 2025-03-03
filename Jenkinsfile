@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        dockerTool 'Default'
-    }
-
     stages {
             stage('Checkout') {
                 steps {
@@ -14,26 +10,24 @@ pipeline {
 
             stage('Build') {
                 steps {
-                    echo "Building from branch: ${BRANCH}"
                     sh "./gradlew build"
                 }
             }
 
             stage('Unit Tests') {
                 steps {
-                    echo "Running tests..."
                     sh './gradlew test'
-                    echo "Archiving test results..."
                     junit '**/build/test-results/test/*.xml'
                 }
             }
 
-            stage('Docker build') {
+            stage('Docker build and push') {
                 steps {
-                    echo "Building docker image..."
-                    sh "ls ./build/libs"
                     script {
-                        docker.build("devops/web-server")
+                        image = docker.build("devops/web-server")
+                        docker.withRegistry('', 'git') {
+                            image.push()
+                        }
                     }
                 }
             }
