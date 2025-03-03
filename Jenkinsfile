@@ -28,11 +28,11 @@ pipeline {
             stage('Docker build and push') {
                 steps {
                     script {
-                        def image = docker.build("devops/web-server")
-                        image.push()
-//                         docker.withRegistry('https://registry.hub.docker.com', 'docker.io') {
-//                             image.push()
-//                         }
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker.io') {
+                            echo 'Hello World'
+                        }
+//                         def image = docker.build("devops/web-server")
+//                         image.push()
                     }
                 }
             }
