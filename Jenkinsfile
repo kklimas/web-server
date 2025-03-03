@@ -31,6 +31,7 @@ pipeline {
             stage('Docker build') {
                 steps {
                     echo "Building docker image..."
+                    sh "ls ./build/libs"
                     script {
                         docker.build("devops/web-server")
                     }
