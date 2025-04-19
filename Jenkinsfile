@@ -5,4 +5,6 @@ artifactPipeline {
         artifactId = 'my-spring-app'
         version = '1.2.3'
     }
+
+    unitTests {}
 }
