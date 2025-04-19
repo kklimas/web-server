@@ -1,18 +1,5 @@
-pipeline {
-    agent any
+@Library('shared-lib@develop') _
 
-    stages {
-            stage('Build') {
-                steps {
-                    sh "./gradlew build"
-                }
-            }
-
-            stage('Unit Tests') {
-                steps {
-                    sh './gradlew test'
-                    junit '**/build/test-results/test/*.xml'
-                }
-            }
-    }
+artifactPipeline {
+    appName = 'web-server'
 }
