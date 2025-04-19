@@ -1,3 +1,8 @@
 @Library('shared-lib@develop') _
 
-artifactPipeline()
+artifactPipeline {
+    build {
+        artifactId = 'my-spring-app'
+        version = '1.2.3'
+    }
+}
